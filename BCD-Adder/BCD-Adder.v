@@ -1,16 +1,27 @@
 module bcd_adder(a,b,cin,sum,cout);
+    //taking two 4bit bcd numbers as input
     input [3:0] a,b;
+    //taking cin as input
     input cin;
+    //giving 4 bit sum as output
     output [3:0] sum;
+    //giving cout as output
     output cout;
+    //using temporary reg sumtemp for storing 5bit outputs
     reg [4:0] sumtemp;
+    //using temporary reg sum for 4 bit outputs
     reg [3:0] sum;
+    //using cout as temporary carry
     reg cout;  
-
+    //it ensures the logic changes whenever input changes
     always @(a,b,cin)
+    //start loop
     begin
+	//adding three input 
         sumtemp = a+b+cin; 
-        if(sumtemp > 9)    
+	//if sumtemp is greater than 9
+        if(sumtemp > 9)
+        //start new loop
 	begin
             sumtemp = sumtemp+6; //add 6, if result is more than 9.
             cout = 1;  //set the carry output
